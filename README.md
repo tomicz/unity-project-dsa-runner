@@ -35,3 +35,12 @@ A **Graph** is a non-linear data structure consisting of vertices and edges. The
 - **Weighted graph:**
 	- A graph in which the edges are already specified with suitable weight is known as a weighted graph
 	- Weighted graphs can be further classified as directed weighted graphs and undirected weighted graphs.
+
+### Representations of graphs
+
+- Adjacency Matrix 
+- Adjacency List 
+
+**Adjacency Matrix** is a 2D array of size V x V where V is the number of vertices in a graph. Let the 2D array be adj[][], a slot adj[i][j] = 1 indicates that there is an edge from vertex i to vertex j. Adjacency matrix for undirected graph is always symmetric. Adjacency Matrix is also used to represent weighted graphs. If adj[i][j] = w, then there is an edge from vertex i to vertex j with weight w.
+
+**Adjacency List:** An array of lists is used. The size of the array is equal to the number of vertices. Let the array be an array[]. An entry array[i] represents the list of vertices adjacent to the ith vertex. This representation can also be used to represent a weighted graph. The weights of edges can be represented as lists of pairs. Following is the adjacency list representation of the above graph.  
