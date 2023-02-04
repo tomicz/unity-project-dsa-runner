@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TOMICZ.Debugger;
 
-namespace TOMICZ.DSARunner
+namespace TOMICZ.DSARunner.Graphs
 {
     public class Graph
     {
