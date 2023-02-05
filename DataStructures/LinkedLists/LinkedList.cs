@@ -24,6 +24,7 @@ namespace TOMICZ.DSARunner.LinkedLists
         {
             Node<T> node = new Node<T>(value, null);
             Tail.Next = node;
+            Tail = Tail.Next;
             Length++;
         }
     }
