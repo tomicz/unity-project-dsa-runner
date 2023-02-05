@@ -1,3 +1,4 @@
+using System;
 using TOMICZ.Debugger;
 
 namespace TOMICZ.DSARunner.LinkedLists
@@ -45,6 +46,26 @@ namespace TOMICZ.DSARunner.LinkedLists
             newNode.Next = Head;
             Head = newNode;
             Length++;
+        }
+
+        public T GetValueAt(int index)
+        {
+            int currentIndex = 0;
+            Node<T> currentNode = Head;
+
+            while(currentNode != null)
+            {
+                currentIndex++;
+
+                if(currentIndex == index)
+                {
+                    return currentNode.Value;
+                }
+
+                currentNode = currentNode.Next;
+            }
+
+            throw new IndexOutOfRangeException("Index out of range");
         }
 
         public bool IsEmpty
