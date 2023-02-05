@@ -9,13 +9,6 @@ namespace TOMICZ.DSARunner.LinkedLists
 
         public int Length { get; private set; }
 
-        public LinkedList(T value)
-        {
-            Head = new Node<T>(value, null);
-            Tail = Head;
-            Length = 1;
-        }
-
         /// <summary>
         /// Add a new node to the end of linked list.
         /// </summary>
@@ -23,6 +16,16 @@ namespace TOMICZ.DSARunner.LinkedLists
         public void Append(T value)
         {
             Node<T> newNode = new Node<T>(value, null);
+
+            if(Head == null)
+            {
+                Head = newNode;
+                Tail = Head;
+                Length++;
+
+                return;
+            }
+
             Tail.Next = newNode;
             Tail = Tail.Next;
             Length++;
@@ -32,9 +35,31 @@ namespace TOMICZ.DSARunner.LinkedLists
         {
             Node<T> newNode = new Node<T>(value, null);
 
+            if(Head == null)
+            {
+                Head = newNode;
+                Length++;
+                return;
+            }
+
             newNode.Next = Head;
             Head = newNode;
             Length++;
+        }
+
+        public bool IsEmpty
+        {
+            get
+            {
+                if(Length == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
         }
     }
 }
