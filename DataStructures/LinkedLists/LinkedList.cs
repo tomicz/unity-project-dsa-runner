@@ -22,9 +22,18 @@ namespace TOMICZ.DSARunner.LinkedLists
         /// <param name="value"></param>
         public void Append(T value)
         {
-            Node<T> node = new Node<T>(value, null);
-            Tail.Next = node;
+            Node<T> newNode = new Node<T>(value, null);
+            Tail.Next = newNode;
             Tail = Tail.Next;
+            Length++;
+        }
+
+        public void Prepend(T value)
+        {
+            Node<T> newNode = new Node<T>(value, null);
+
+            newNode.Next = Head;
+            Head = newNode;
             Length++;
         }
     }
