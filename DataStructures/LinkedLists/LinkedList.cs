@@ -76,6 +76,40 @@ namespace TOMICZ.DSARunner.LinkedLists
             return tempNode;
         }
 
+        public Node<T> PopLast()
+        {
+            if(Head == null)
+            {
+                return null;
+            }
+
+            if(Head == Tail)
+            {
+                Tail = null;
+                Head = null;
+                Length--;
+                return null;
+            }
+
+            var currentNode = Head;
+
+            while(currentNode != null)
+            {
+                if(currentNode.Next == Tail)
+                {
+                    var tempNode = Tail;
+                    currentNode.Next = null;
+                    Tail = currentNode;
+                    Length--;
+                    return tempNode;
+                }
+
+                currentNode = currentNode.Next;
+            }
+
+            return null;
+        }
+
         public bool IsEmpty
         {
             get
