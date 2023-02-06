@@ -68,18 +68,19 @@ namespace TOMICZ.DSARunner.LinkedLists
             throw new IndexOutOfRangeException("Index out of range");
         }
 
+        public Node<T> PopFront()
+        {
+            var tempNode = Head;
+            Head = Head.Next;
+            Length--;
+            return tempNode;
+        }
+
         public bool IsEmpty
         {
             get
             {
-                if(Length == 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return Length == 0;
             }
         }
     }
