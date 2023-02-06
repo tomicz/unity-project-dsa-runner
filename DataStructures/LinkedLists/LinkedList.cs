@@ -50,7 +50,7 @@ namespace TOMICZ.DSARunner.LinkedLists
 
         public T GetValueAt(int index)
         {
-            int currentIndex = 0;
+            int currentIndex = -1;
             Node<T> currentNode = Head;
 
             while(currentNode != null)
@@ -108,6 +108,46 @@ namespace TOMICZ.DSARunner.LinkedLists
             }
 
             return null;
+        }
+
+        public void Insert(int index, T value)
+        {
+            int currentIndex = -1;
+
+            if(Head == null)
+            {
+                RuntimeConsole.Log("0");
+                Append(value);
+                return;
+            }
+
+            var currentNode = Head;
+
+            if (currentNode.Next == null)
+            {
+                RuntimeConsole.Log("1");
+                Append(value);
+                return;
+            }
+
+            while (currentNode.Next != null)
+            {
+                currentIndex++;
+
+                if(currentIndex == index)
+                {
+                    RuntimeConsole.Log("2");
+                    var tempValue = currentNode.Next;
+                    currentNode.Next = new Node<T>(value, tempValue);
+                    Length++;
+                    return;
+                }
+
+                currentNode = currentNode.Next;
+            }
+
+            RuntimeConsole.Log("3");
+            Append(value);
         }
 
         public bool IsEmpty
