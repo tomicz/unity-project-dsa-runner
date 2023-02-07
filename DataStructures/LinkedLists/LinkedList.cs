@@ -150,6 +150,47 @@ namespace TOMICZ.DSARunner.LinkedLists
             Append(value);
         }
 
+        public void Remove(int index)
+        {
+            int currentIndex = 0;
+
+            if(Head.Next == null)
+            {
+                PopFront();
+                return;
+            }
+
+            var currentNode = Head;
+
+            while(currentNode.Next.Next != null)
+            {
+                currentIndex++;
+
+                if(index == 0)
+                {
+                    PopFront();
+                    return;
+                }
+
+                if (currentIndex == index)
+                {
+                    var previousNode = currentNode;
+                    var nextNode = currentNode.Next.Next;
+
+                    RuntimeConsole.Log($"Removed node at index: {currentIndex} of value: {currentNode.Next.Value}");
+
+                    previousNode.Next = nextNode;
+                    Length--;
+
+                    return;
+                }
+
+                currentNode = currentNode.Next;
+            }
+
+            PopLast();
+        }
+
         public bool IsEmpty
         {
             get
