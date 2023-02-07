@@ -191,6 +191,21 @@ namespace TOMICZ.DSARunner.LinkedLists
             PopLast();
         }
 
+        public void Reverse()
+        {
+            Node<T> prev = null;
+
+            while(Head != null)
+            {
+                var temp = Head.Next;
+                Head.Next = prev;
+                prev = Head;
+                Head = temp;
+            }
+
+            Head = prev;
+        }
+
         public bool IsEmpty
         {
             get
