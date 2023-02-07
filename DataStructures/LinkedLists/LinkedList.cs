@@ -116,7 +116,6 @@ namespace TOMICZ.DSARunner.LinkedLists
 
             if(Head == null)
             {
-                RuntimeConsole.Log("0");
                 Append(value);
                 return;
             }
@@ -125,7 +124,6 @@ namespace TOMICZ.DSARunner.LinkedLists
 
             if (currentNode.Next == null)
             {
-                RuntimeConsole.Log("1");
                 Append(value);
                 return;
             }
@@ -136,7 +134,6 @@ namespace TOMICZ.DSARunner.LinkedLists
 
                 if(currentIndex == index)
                 {
-                    RuntimeConsole.Log("2");
                     var tempValue = currentNode.Next;
                     currentNode.Next = new Node<T>(value, tempValue);
                     Length++;
@@ -146,7 +143,6 @@ namespace TOMICZ.DSARunner.LinkedLists
                 currentNode = currentNode.Next;
             }
 
-            RuntimeConsole.Log("3");
             Append(value);
         }
 
