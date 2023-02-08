@@ -32,6 +32,10 @@ namespace TOMICZ.DSARunner.LinkedLists
             Length++;
         }
 
+        /// <summary>
+        /// Adds a new node to the beginning of the list.
+        /// </summary>
+        /// <param name="value"></param>
         public void Prepend(T value)
         {
             Node<T> newNode = new Node<T>(value, null);
@@ -48,6 +52,11 @@ namespace TOMICZ.DSARunner.LinkedLists
             Length++;
         }
 
+        /// <summary>
+        /// Returns node value by an index.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public T GetValueAt(int index)
         {
             int currentIndex = -1;
@@ -68,6 +77,10 @@ namespace TOMICZ.DSARunner.LinkedLists
             throw new IndexOutOfRangeException("Index out of range");
         }
 
+        /// <summary>
+        /// Removes first node in a list;
+        /// </summary>
+        /// <returns></returns>
         public Node<T> PopFront()
         {
             var tempNode = Head;
@@ -76,6 +89,10 @@ namespace TOMICZ.DSARunner.LinkedLists
             return tempNode;
         }
 
+        /// <summary>
+        /// Removes last node in a list.
+        /// </summary>
+        /// <returns></returns>
         public Node<T> PopLast()
         {
             if(Head == null)
@@ -110,6 +127,11 @@ namespace TOMICZ.DSARunner.LinkedLists
             return null;
         }
 
+        /// <summary>
+        /// Inserts new value to the list by an index.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="value"></param>
         public void Insert(int index, T value)
         {
             int currentIndex = -1;
@@ -146,6 +168,10 @@ namespace TOMICZ.DSARunner.LinkedLists
             Append(value);
         }
 
+        /// <summary>
+        /// Removes value by an index.
+        /// </summary>
+        /// <param name="index"></param>
         public void RemoveAtIndex(int index)
         {
             int currentIndex = 0;
@@ -185,6 +211,10 @@ namespace TOMICZ.DSARunner.LinkedLists
             PopLast();
         }
 
+        /// <summary>
+        /// Removes existing value. If value is not found, then returns null;
+        /// </summary>
+        /// <param name="value"></param>
         public void Remove(T value)
         {
             if(Head == null)
@@ -223,6 +253,9 @@ namespace TOMICZ.DSARunner.LinkedLists
             }
         }
 
+        /// <summary>
+        /// Reverses list;
+        /// </summary>
         public void Reverse()
         {
             Node<T> prev = null;
@@ -238,6 +271,9 @@ namespace TOMICZ.DSARunner.LinkedLists
             Head = prev;
         }
 
+        /// <summary>
+        /// Checks if list is empty or not.
+        /// </summary>
         public bool IsEmpty
         {
             get
