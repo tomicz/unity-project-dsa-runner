@@ -196,10 +196,7 @@ namespace TOMICZ.DSARunner.LinkedLists
 
                 if (currentIndex == index)
                 {
-                    var previousNode = currentNode;
-                    var nextNode = currentNode.Next.Next;
-
-                    previousNode.Next = nextNode;
+                    currentNode.Next = currentNode.Next.Next;
                     Length--;
 
                     return;
@@ -208,7 +205,12 @@ namespace TOMICZ.DSARunner.LinkedLists
                 currentNode = currentNode.Next;
             }
 
-            PopLast();
+            currentIndex++;
+
+            if(currentIndex == index)
+            {
+                PopLast();
+            }
         }
 
         /// <summary>
