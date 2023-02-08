@@ -185,6 +185,26 @@ namespace TOMICZ.DSARunner.LinkedLists
             PopLast();
         }
 
+        public void Remove(T value)
+        {
+            if(Head == null)
+            {
+                return;
+            }
+
+            var currentNode = Head;
+
+            while(currentNode.Next.Next != null)
+            {
+                if(currentNode.Next.Equals(value))
+                {
+                    RuntimeConsole.Log($"Value: {value}");
+                }
+
+                currentNode = currentNode.Next;
+            }
+        }
+
         public void Reverse()
         {
             Node<T> prev = null;
