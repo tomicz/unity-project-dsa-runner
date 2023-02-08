@@ -192,16 +192,34 @@ namespace TOMICZ.DSARunner.LinkedLists
                 return;
             }
 
+            if (Head.Equals(value))
+            {
+                PopFront();
+                return;
+            }
+
+            if(Head.Next == null)
+            {
+                return;
+            }
+
             var currentNode = Head;
 
             while(currentNode.Next.Next != null)
             {
                 if(currentNode.Next.Equals(value))
                 {
-                    RuntimeConsole.Log($"Value: {value}");
+                    currentNode.Next = currentNode.Next.Next;
+                    Length--;
+                    return;
                 }
 
                 currentNode = currentNode.Next;
+            }
+
+            if (currentNode.Next.Equals(value))
+            {
+                PopLast();
             }
         }
 
