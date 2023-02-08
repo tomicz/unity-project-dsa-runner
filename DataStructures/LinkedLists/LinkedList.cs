@@ -283,5 +283,18 @@ namespace TOMICZ.DSARunner.LinkedLists
                 return Length == 0;
             }
         }
+
+        public void PrintValues(LinkedList<T> linkedList)
+        {
+            int currentIndex = -1;
+            var current = linkedList.Head;
+
+            while (current != null)
+            {
+                currentIndex++;
+                RuntimeConsole.Log($"Index: {currentIndex}, Value: {current.Value}");
+                current = current.Next;
+            }
+        }
     }
 }
