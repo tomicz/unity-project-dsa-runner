@@ -40,5 +40,23 @@ namespace TOMICZ.DSARunner.LinkedLists
 
             return true;
         }
+
+        public Node<int> DeleteDuplicates(Node<int> head)
+        {
+            var dummy = new Node<int>(-1, null);
+            var current = dummy;
+
+            while(head != null)
+            {
+                if(current.Value != head.Value)
+                {
+                    current.Next = new Node<int>(head.Value, null);
+                    current = current.Next;
+                }
+                head = head.Next;
+            }
+
+            return dummy.Next;
+        }
     }
 }
