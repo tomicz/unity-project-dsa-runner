@@ -146,7 +146,7 @@ namespace TOMICZ.DSARunner.LinkedLists
             Append(value);
         }
 
-        public void Remove(int index)
+        public void RemoveAtIndex(int index)
         {
             int currentIndex = 0;
 
