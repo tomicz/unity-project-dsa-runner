@@ -14,7 +14,7 @@ namespace TOMICZ.DSARunner.LinkedLists
         /// Add a new node to the end of linked list.
         /// </summary>
         /// <param name="value"></param>
-        public void Append(T value)
+        public void AddLast(T value)
         {
             Node<T> newNode = new Node<T>(value, null);
 
@@ -36,7 +36,7 @@ namespace TOMICZ.DSARunner.LinkedLists
         /// Adds a new node to the beginning of the list.
         /// </summary>
         /// <param name="value"></param>
-        public void Prepend(T value)
+        public void AddFirst(T value)
         {
             Node<T> newNode = new Node<T>(value, null);
 
@@ -138,7 +138,7 @@ namespace TOMICZ.DSARunner.LinkedLists
 
             if(Head == null)
             {
-                Append(value);
+                AddLast(value);
                 return;
             }
 
@@ -146,7 +146,7 @@ namespace TOMICZ.DSARunner.LinkedLists
 
             if (currentNode.Next == null)
             {
-                Append(value);
+                AddLast(value);
                 return;
             }
 
@@ -165,7 +165,7 @@ namespace TOMICZ.DSARunner.LinkedLists
                 currentNode = currentNode.Next;
             }
 
-            Append(value);
+            AddLast(value);
         }
 
         /// <summary>
