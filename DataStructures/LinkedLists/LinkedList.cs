@@ -173,8 +173,6 @@ namespace TOMICZ.DSARunner.LinkedLists
                     var previousNode = currentNode;
                     var nextNode = currentNode.Next.Next;
 
-                    RuntimeConsole.Log($"Removed node at index: {currentIndex} of value: {currentNode.Next.Value}");
-
                     previousNode.Next = nextNode;
                     Length--;
 
