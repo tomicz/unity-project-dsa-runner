@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TOMICZ.Debugger;
 
 namespace TOMICZ.DSARunner.LinkedLists
 {
@@ -48,6 +49,7 @@ namespace TOMICZ.DSARunner.LinkedLists
 
             while(head != null)
             {
+                RuntimeConsole.Log($"C: {current.Value}, HV: {head.Value}");
                 if(current.Value != head.Value)
                 {
                     current.Next = new Node<int>(head.Value, null);
