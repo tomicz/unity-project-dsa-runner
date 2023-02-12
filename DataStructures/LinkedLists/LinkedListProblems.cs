@@ -60,5 +60,45 @@ namespace TOMICZ.DSARunner.LinkedLists
 
             return dummy.Next;
         }
+
+        public Node<int> AddTwoNumbers(Node<int> l1, Node<int> l2)
+        {
+            Node<int> dummy = new Node<int>(-1, null);
+            Node<int> current = dummy;
+
+            int carry = 0;
+
+            while(l1 != null || l2 != null)
+            {
+                int sumA = l1 == null ? 0 : l1.Value;
+                int sumB = l2 == null ? 0 : l2.Value;
+
+                int sum = sumA + sumB + carry;
+                carry = sum / 10;
+                int reminder = sum % 10;
+
+                Node<int> tempNode = new Node<int>(reminder, null);
+                current.Next = tempNode;
+
+                if(l1 != null)
+                {
+                    l1 = l1.Next;
+                }
+                if(l2 != null)
+                {
+                    l2 = l2.Next;
+                }
+
+                current = current.Next;
+            }
+
+            if(carry > 0)
+            {
+                current.Next = new Node<int>(1, null);
+                current = current.Next;
+            }
+
+            return dummy.Next;
+        }
     }
 }
