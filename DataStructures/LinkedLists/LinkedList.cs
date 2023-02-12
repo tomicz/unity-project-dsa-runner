@@ -284,10 +284,10 @@ namespace TOMICZ.DSARunner.LinkedLists
             }
         }
 
-        public void PrintValues(Node<T> head)
+        public void PrintValues()
         {
             int currentIndex = -1;
-            var current = head;
+            var current = Head;
 
             while (current != null)
             {
