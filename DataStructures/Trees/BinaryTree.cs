@@ -48,7 +48,7 @@ namespace TOMICZ.DSARunner.Trees
 
             while(currentNode != null)
             {
-                if (value.CompareTo(root.value) < 0)
+                if (value.CompareTo(currentNode.value) < 0)
                 {
                     if(currentNode.left == null)
                     {
@@ -58,7 +58,7 @@ namespace TOMICZ.DSARunner.Trees
 
                     currentNode = currentNode.left;
                 }
-                if (value.CompareTo(root.value) > 0)
+                if (value.CompareTo(currentNode.value) > 0)
                 {
                     if(currentNode.right == null)
                     {
@@ -69,6 +69,44 @@ namespace TOMICZ.DSARunner.Trees
                     currentNode = currentNode.right;
                 }
             }
+        }
+
+        public Node Find(T value)
+        {
+            if(root == null)
+            {
+                return null;
+            }
+
+            if(root != null && root.Equals(value))
+            {
+                return root;
+            }
+
+            Node currentNode = root;
+
+            while(currentNode != null)
+            {
+                if (value.CompareTo(currentNode.value) < 0)
+                {
+                    currentNode = currentNode.left;
+                }
+                if (value.CompareTo(currentNode.value) > 0)
+                {
+                    currentNode = currentNode.right;
+                }
+
+                if (value.Equals(currentNode.value))
+                {
+                    return currentNode;
+                }
+                else
+                {
+                    throw new Exception($"Node of value {value} does not exist in current tree.");
+                }
+            }
+
+            throw new Exception($"Node of value {value} does not exist in current tree.");
         }
 
         public void Traverse(TraversalType traversalType)
