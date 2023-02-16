@@ -44,29 +44,29 @@ namespace TOMICZ.DSARunner.Trees
                 return;
             }
 
-            var current = root;
+            Node currentNode = root;
 
-            while(current != null)
+            while(currentNode != null)
             {
                 if (value.CompareTo(root.value) < 0)
                 {
-                    if(current.left == null)
+                    if(currentNode.left == null)
                     {
-                        current.left = new Node(value);
+                        currentNode.left = new Node(value);
                         return;
                     }
 
-                    current = current.left;
+                    currentNode = currentNode.left;
                 }
                 if (value.CompareTo(root.value) > 0)
                 {
-                    if(current.right == null)
+                    if(currentNode.right == null)
                     {
-                        current.right = new Node(value);
+                        currentNode.right = new Node(value);
                         return;
                     }
 
-                    current = current.right;
+                    currentNode = currentNode.right;
                 }
             }
         }
