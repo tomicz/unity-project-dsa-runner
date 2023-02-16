@@ -36,23 +36,27 @@ namespace TOMICZ.DSARunner.Trees
 
         public Node root;
 
+        public int Count { get; private set; }
+
         public void Insert(T value)
         {
             if(root == null)
             {
                 root = new Node(value);
+                Count++;
                 return;
             }
 
             Node currentNode = root;
 
-            while(currentNode != null)
+            while(true)
             {
                 if (value.CompareTo(currentNode.value) < 0)
                 {
                     if(currentNode.left == null)
                     {
                         currentNode.left = new Node(value);
+                        Count++;
                         return;
                     }
 
@@ -63,6 +67,7 @@ namespace TOMICZ.DSARunner.Trees
                     if(currentNode.right == null)
                     {
                         currentNode.right = new Node(value);
+                        Count++;
                         return;
                     }
 
@@ -126,6 +131,44 @@ namespace TOMICZ.DSARunner.Trees
                     RuntimeConsole.Log("Postorder traversal not added.");
                     break;
             }
+        }
+
+        public int GetHeight()
+        {
+            if(root == null)
+            {
+                return -1;
+            }
+
+            Queue<Node> q = new Queue<Node>();
+            q.Enqueue(root);
+            int height = -1;
+
+            while(q.Count > 0)
+            {
+                int size = q.Count;
+
+                height++;
+
+                while (size > 0)
+                {
+                    Node tempNode = q.Dequeue();
+                    RuntimeConsole.Log(tempNode.value.ToString());
+
+                    if(tempNode.left != null)
+                    {
+                        q.Enqueue(tempNode.left);
+                    }
+                    if(tempNode.right != null)
+                    {
+                        q.Enqueue(tempNode.right);
+                    }
+
+                    size--;
+                }
+            }
+
+            return height;
         }
 
         private void LevelOrder()
