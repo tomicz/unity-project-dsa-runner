@@ -13,6 +13,7 @@ namespace TOMICZ.DSARunner.Trees
             InOrder,
             PostOrder
         }
+
         public class Node
         {
             public T value;
@@ -40,19 +41,33 @@ namespace TOMICZ.DSARunner.Trees
             if(root == null)
             {
                 root = new Node(value);
+                return;
             }
 
             var current = root;
 
-            if (value.CompareTo(root.value) < 0)
+            while(current != null)
             {
-                current.left = new Node(value);
-                current = current.left;
-            }
-            else if(value.CompareTo(root.value) > 0)
-            {
-                current.right = new Node(value);
-                current = current.right;
+                if (value.CompareTo(root.value) < 0)
+                {
+                    if(current.left == null)
+                    {
+                        current.left = new Node(value);
+                        return;
+                    }
+
+                    current = current.left;
+                }
+                if (value.CompareTo(root.value) > 0)
+                {
+                    if(current.right == null)
+                    {
+                        current.right = new Node(value);
+                        return;
+                    }
+
+                    current = current.right;
+                }
             }
         }
 
@@ -77,14 +92,17 @@ namespace TOMICZ.DSARunner.Trees
 
         private void LevelOrder()
         {
-            Queue<Node> queue = new Queue<Node>();
-
-            Node tempNode = root;
-            queue.Enqueue(tempNode);
-
-            while (tempNode != null)
+            if(root == null)
             {
-                tempNode = queue.Dequeue();
+                return;
+            }
+
+            Queue<Node> queue = new Queue<Node>();
+            queue.Enqueue(root);
+
+            while (queue.Count > 0)
+            {
+                Node tempNode = queue.Dequeue();
                 RuntimeConsole.Log($"Node value: {tempNode.value}");
 
                 if (tempNode.left != null)
