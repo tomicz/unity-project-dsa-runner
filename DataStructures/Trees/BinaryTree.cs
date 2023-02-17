@@ -171,6 +171,42 @@ namespace TOMICZ.DSARunner.Trees
             return height;
         }
 
+        public bool IsInTree(T value)
+        {
+            if(root == null)
+            {
+                return false;
+            }
+
+            var currentNode = root;
+
+            while (currentNode != null)
+            {
+                if (IsEqual(value, currentNode.value))
+                {
+                    return true;
+                }
+
+                if (IsLessThan(value, currentNode.value))
+                {
+                    currentNode = currentNode.left;
+                }
+
+                if (IsGreaterThan(value, currentNode.value))
+                {
+                    currentNode = currentNode.right;
+                }
+            }
+
+            return false;
+        }
+
+        private bool IsLessThan(T valueA, T valueB) => valueA.CompareTo(valueB) < 0;
+
+        private bool IsGreaterThan(T valueA, T valueB) => valueA.CompareTo(valueB) > 0;
+
+        private bool IsEqual(T valueA, T valueB) => valueA.Equals(valueB);
+
         private void TraverseLevelOrder()
         {
             if(root == null)
@@ -219,7 +255,6 @@ namespace TOMICZ.DSARunner.Trees
                 RuntimeConsole.Log($"Node value: {currentNode.value}");
                 currentNode = currentNode.right;
             }
-
         }
     }
 }
