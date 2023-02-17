@@ -119,13 +119,13 @@ namespace TOMICZ.DSARunner.Trees
             switch (traversalType)
             {
                 case TraversalType.LevelOrder:
-                    LevelOrder();
+                    TraverseLevelOrder();
                     break;
                 case TraversalType.PreOrder:
                     RuntimeConsole.Log("Preorder traversal not added.");
                     break;
                 case TraversalType.InOrder:
-                    RuntimeConsole.Log("Inorder traversal not added.");
+                    TraverseInorder();
                     break;
                 case TraversalType.PostOrder:
                     RuntimeConsole.Log("Postorder traversal not added.");
@@ -171,7 +171,7 @@ namespace TOMICZ.DSARunner.Trees
             return height;
         }
 
-        private void LevelOrder()
+        private void TraverseLevelOrder()
         {
             if(root == null)
             {
@@ -195,6 +195,31 @@ namespace TOMICZ.DSARunner.Trees
                     queue.Enqueue(tempNode.right);
                 }
             }
+        }
+
+        private void TraverseInorder()
+        {
+            if(root == null)
+            {
+                return;
+            }
+
+            Stack<Node> stack = new Stack<Node>();
+            Node currentNode = root;
+
+            while(currentNode != null || stack.Count > 0)
+            {
+                while(currentNode != null)
+                {
+                    stack.Push(currentNode);
+                    currentNode = currentNode.left;
+                }
+
+                currentNode = stack.Pop();
+                RuntimeConsole.Log($"Node value: {currentNode.value}");
+                currentNode = currentNode.right;
+            }
+
         }
     }
 }
