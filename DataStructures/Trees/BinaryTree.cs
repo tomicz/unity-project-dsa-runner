@@ -311,6 +311,56 @@ namespace TOMICZ.DSARunner.Trees
             return default;
         }
 
+        public void Remove(T value)
+        {
+            if(root == null)
+            {
+                return;
+            }
+
+            Node currentNode = root;
+            Node parentNode = null;
+
+            while(currentNode != null)
+            {
+                if (IsEqual(value, currentNode.value))
+                {
+                    if (currentNode.right == null)
+                    {
+                        if (parentNode == null)
+                        {
+                            root = currentNode.left;
+                        }
+                        else
+                        {
+                            if (IsLessThan(currentNode.value, parentNode.value))
+                            {
+                                parentNode.left = currentNode.left;
+                            }
+                            if (IsGreaterThan(currentNode.value, parentNode.value))
+                            {
+                                parentNode.right = currentNode.left;
+                            }
+                        }
+                    }
+
+                    RuntimeConsole.Log($"Removed value {value}");
+                    return;
+                }
+                if (IsLessThan(value, currentNode.value))
+                {
+                    parentNode = currentNode;
+                    currentNode = currentNode.left;
+                }
+                if(IsGreaterThan(value, currentNode.value))
+                {
+                    parentNode = currentNode;
+                    currentNode = currentNode.right;
+                }
+
+            }
+        }
+
         private bool IsLessThan(T valueA, T valueB) => valueA.CompareTo(valueB) < 0;
 
         private bool IsGreaterThan(T valueA, T valueB) => valueA.CompareTo(valueB) > 0;
