@@ -203,7 +203,7 @@ namespace TOMICZ.DSARunner.Trees
 
         public void DeleteTree() => root = null;
 
-        public T GetMinValue()
+        public T GetMin()
         {
             if(root == null)
             {
@@ -220,6 +220,25 @@ namespace TOMICZ.DSARunner.Trees
             }
 
             return minValue;
+        }
+
+        public T GetMax()
+        {
+            if (root == null)
+            {
+                return default;
+            }
+
+            Node currentNode = root;
+            T maxValue = default;
+
+            while (currentNode != null)
+            {
+                maxValue = currentNode.value;
+                currentNode = currentNode.right;
+            }
+
+            return maxValue;
         }
 
         private bool IsLessThan(T valueA, T valueB) => valueA.CompareTo(valueB) < 0;
