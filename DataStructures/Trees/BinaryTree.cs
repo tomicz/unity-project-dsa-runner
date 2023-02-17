@@ -201,6 +201,8 @@ namespace TOMICZ.DSARunner.Trees
             return false;
         }
 
+        public void DeleteTree() => root = null;
+
         private bool IsLessThan(T valueA, T valueB) => valueA.CompareTo(valueB) < 0;
 
         private bool IsGreaterThan(T valueA, T valueB) => valueA.CompareTo(valueB) > 0;
