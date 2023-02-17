@@ -276,6 +276,41 @@ namespace TOMICZ.DSARunner.Trees
             return true;
         }
 
+        public T GetSuccessor(T value)
+        {
+            if(root == null)
+            {
+                return default;
+            }
+
+            Node currentNode = root;
+
+            while(currentNode != null)
+            {
+                if (IsEqual(value, currentNode.value))
+                {
+                    if (currentNode.right != null)
+                    {
+                        return currentNode.right.value;
+                    }
+
+                    return default;
+                }
+
+                if (IsLessThan(value, currentNode.value))
+                {
+                    currentNode = currentNode.left;
+                }
+
+                if (IsGreaterThan(value, currentNode.value))
+                {
+                    currentNode = currentNode.right;
+                }
+            }
+
+            return default;
+        }
+
         private bool IsLessThan(T valueA, T valueB) => valueA.CompareTo(valueB) < 0;
 
         private bool IsGreaterThan(T valueA, T valueB) => valueA.CompareTo(valueB) > 0;
