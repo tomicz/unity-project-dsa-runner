@@ -241,6 +241,41 @@ namespace TOMICZ.DSARunner.Trees
             return maxValue;
         }
 
+        public bool IsBST()
+        {
+            if (root == null)
+            {
+                return false;
+            }
+
+            Stack<Node> stack = new Stack<Node>();
+            Node currentNode = root;
+            List<T> nodeValues = new List<T>();
+
+            while (currentNode != null || stack.Count > 0)
+            {
+                while (currentNode != null)
+                {
+                    stack.Push(currentNode);
+                    currentNode = currentNode.left;
+                }
+
+                currentNode = stack.Pop();
+                nodeValues.Add(currentNode.value);
+                currentNode = currentNode.right;
+            }
+
+            for(int i = 0; i < nodeValues.Count - 1; i++)
+            {
+                if(IsGreaterThan(nodeValues[i], nodeValues[i + 1]))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         private bool IsLessThan(T valueA, T valueB) => valueA.CompareTo(valueB) < 0;
 
         private bool IsGreaterThan(T valueA, T valueB) => valueA.CompareTo(valueB) > 0;
