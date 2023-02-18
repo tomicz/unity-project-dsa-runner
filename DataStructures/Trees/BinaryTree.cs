@@ -134,7 +134,7 @@ namespace TOMICZ.DSARunner.Trees
                     TraverseInorder();
                     break;
                 case TraversalType.PostOrder:
-                    RuntimeConsole.Log("Postorder traversal not added.");
+                    TraversePostorder();
                     break;
             }
         }
@@ -504,6 +504,36 @@ namespace TOMICZ.DSARunner.Trees
                 currentNode = stack.Pop();
                 RuntimeConsole.Log($"Node value: {currentNode.value}");
                 currentNode = currentNode.right;
+            }
+        }
+
+        private void TraversePostorder()
+        {
+            Stack<Node> s1 = new Stack<Node>();
+            Stack<Node> s2 = new Stack<Node>();
+
+            s1.Push(root);
+
+            while(s1.Count > 0)
+            {
+                Node tempNode = s1.Pop();
+                s2.Push(tempNode);
+
+                if(tempNode.left != null)
+                {
+                    s1.Push(tempNode.left);
+                }
+
+                if (tempNode.right != null)
+                {
+                    s1.Push(tempNode.right);
+                }
+            }
+
+            while(s2.Count > 0)
+            {
+                Node tempNode = s2.Pop();
+                RuntimeConsole.Log($"Node value: {tempNode.value}");
             }
         }
     }
