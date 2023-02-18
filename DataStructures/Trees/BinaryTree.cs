@@ -128,7 +128,7 @@ namespace TOMICZ.DSARunner.Trees
                     TraverseLevelOrder();
                     break;
                 case TraversalType.PreOrder:
-                    RuntimeConsole.Log("Preorder traversal not added.");
+                    TraversePreorder();
                     break;
                 case TraversalType.InOrder:
                     TraverseInorder();
@@ -458,6 +458,27 @@ namespace TOMICZ.DSARunner.Trees
                 if (tempNode.right != null)
                 {
                     queue.Enqueue(tempNode.right);
+                }
+            }
+        }
+
+        private void TraversePreorder()
+        {
+            Stack<Node> stack = new Stack<Node>();
+            stack.Push(root);
+
+            while(stack.Count > 0)
+            {
+                Node tempNode = stack.Pop();
+                RuntimeConsole.Log($"Node value: {tempNode.value}");
+
+                if (tempNode.right != null)
+                {
+                    stack.Push(tempNode.right);
+                }
+                if(tempNode.left != null)
+                {
+                    stack.Push(tempNode.left);
                 }
             }
         }
