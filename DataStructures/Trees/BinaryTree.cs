@@ -51,9 +51,15 @@ namespace TOMICZ.DSARunner.Trees
 
             while(true)
             {
+                if (IsEqual(currentNode.value, value))
+                {
+                    RuntimeConsole.Log($"Value {value} can't be added to a binary tree, as it already exists.");
+                    return;
+                }
                 if (value.CompareTo(currentNode.value) < 0)
                 {
-                    if(currentNode.left == null)
+
+                    if (currentNode.left == null)
                     {
                         currentNode.left = new Node(value);
                         Count++;
@@ -327,6 +333,8 @@ namespace TOMICZ.DSARunner.Trees
                 {
                     if (currentNode.right == null)
                     {
+                        RuntimeConsole.Log("Initilised option 1 for node removal");
+
                         if (parentNode == null)
                         {
                             root = currentNode.left;
@@ -340,6 +348,28 @@ namespace TOMICZ.DSARunner.Trees
                             if (IsGreaterThan(currentNode.value, parentNode.value))
                             {
                                 parentNode.right = currentNode.left;
+                            }
+                        }
+                    }
+                    else if (currentNode.right.left == null)
+                    {
+                        RuntimeConsole.Log("Initilised option 2 for node removal");
+
+                        if (parentNode == null)
+                        {
+                            root = currentNode.left;
+                        }
+                        else
+                        {
+                            currentNode.right.left = currentNode.left;
+
+                            if (IsLessThan(currentNode.value, parentNode.value))
+                            {
+                                parentNode.left = currentNode.right;
+                            }
+                            if (IsGreaterThan(currentNode.value, parentNode.value))
+                            {
+                                parentNode.right = currentNode.right;
                             }
                         }
                     }
@@ -359,6 +389,62 @@ namespace TOMICZ.DSARunner.Trees
                 }
 
             }
+        }
+
+        private void RemoveIfCurrentChildRightIsNull(Node currentNode, Node parentNode, T value)
+        {
+            RuntimeConsole.Log("Initilised option 1 for node removal");
+
+            if (currentNode.right == null)
+            {
+                if (parentNode == null)
+                {
+                    root = currentNode.left;
+                }
+                else
+                {
+                    if (IsLessThan(currentNode.value, parentNode.value))
+                    {
+                        parentNode.left = currentNode.left;
+                    }
+                    if (IsGreaterThan(currentNode.value, parentNode.value))
+                    {
+                        parentNode.right = currentNode.left;
+                    }
+                }
+            }
+
+            RuntimeConsole.Log($"Removed value {value}");
+            return;
+        }
+
+        private void RemoveIfCurrentChildRightLeftIsNull(Node currentNode, Node parentNode, T value)
+        {
+            RuntimeConsole.Log("Initilised option 2 for node removal");
+
+            if (currentNode.right.left == null)
+            {
+                if (parentNode == null)
+                {
+                    root = currentNode.left;
+                }
+                else
+                {
+                    currentNode.right.left = currentNode.left;
+
+                    if (IsLessThan(currentNode.value, parentNode.value))
+                    {
+                        parentNode.left = currentNode.right;
+                    }
+                    if (IsGreaterThan(currentNode.value, parentNode.value))
+                    {
+                        parentNode.right = currentNode.right;
+                    }
+                }
+            }
+
+            RuntimeConsole.Log($"Removed value {value}");
+            return;
         }
 
         private bool IsLessThan(T valueA, T valueB) => valueA.CompareTo(valueB) < 0;
